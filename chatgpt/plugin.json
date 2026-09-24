@@ -1,0 +1,32 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "facturatum",
+  "version": "0.1.0",
+  "description": "Opera Facturatum (facturas, contactos, tesorería) desde ChatGPT vía MCP OAuth.",
+  "author": {
+    "name": "Politeia Soft"
+  },
+  "homepage": "https://app.facturatum.es/conectores",
+  "repository": "https://github.com/PoliteiaSoft/facturatum-grok-bot-plugin",
+  "keywords": ["facturatum", "invoices", "mcp", "oauth", "spain"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Facturatum",
+        "shortDescription": "Facturas y operaciones de tu empresa vía MCP OAuth.",
+        "longDescription": "Conecta ChatGPT con tu empresa de Facturatum. Consulta facturas emitidas y recibidas, contactos y tesorería con OAuth; sin API keys en el complemento.",
+        "developerName": "Politeia Soft",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://facturatum.es",
+        "defaultPrompt": [
+          "Lista las últimas facturas recibidas de mi empresa en Facturatum.",
+          "Resume el estado de cobros pendientes en Facturatum."
+        ],
+        "brandColor": "#1B4F72",
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      }
+    }
+  }
+}
