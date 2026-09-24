@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "facturatum": {
+      "url": "https://gateway.politeiasoft.com/facturatum/mcp"
+    }
+  }
+}
