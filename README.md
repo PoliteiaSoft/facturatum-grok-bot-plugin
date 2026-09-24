@@ -1,12 +1,21 @@
-# Facturatum — plugin para Grok Bot / Cursor
+# Facturatum — plugins MCP (Grok / Cursor y ChatGPT)
 
-Plugin oficial de [Politeia Soft](https://politeiasoft.com) para operar **Facturatum** desde Grok Bot (mismo formato que los plugins de Cursor).
+Plugins oficiales de [Politeia Soft](https://politeiasoft.com) para operar **Facturatum** vía MCP OAuth.
 
 Servidor MCP remoto (OAuth, sin secretos en el repo):
 
 `https://gateway.politeiasoft.com/facturatum/mcp`
 
-## Contenido
+## Dos formatos
+
+| Carpeta | Cliente | Formato |
+|---------|---------|---------|
+| Raíz (`.cursor-plugin/`, `mcp.json`, `skills/`) | Grok Bot / Cursor | `.cursor-plugin` |
+| [`chatgpt/`](./chatgpt/) | ChatGPT | Agent Plugins portable (`plugin.json` + `mcp.json` con `type`) |
+
+No basta renombrar el plugin Cursor para ChatGPT: el MCP portable exige `"type": "streamable-http"`.
+
+## Contenido (Grok / Cursor)
 
 | Ruta | Uso |
 |------|-----|
@@ -14,6 +23,7 @@ Servidor MCP remoto (OAuth, sin secretos en el repo):
 | `mcp.json` | Servidor MCP remoto |
 | `skills/facturatum/SKILL.md` | Un trabajo, anti-trabajos y confirmación en acciones irreversibles |
 | `assets/` | Logos de referencia (Grok, ChatGPT, Claude, DeepSeek) |
+| `chatgpt/` | Complemento ChatGPT (ver su README) |
 
 ## Prueba local
 
