@@ -28,9 +28,9 @@ Cuando el usuario aporte un PDF (o diga «sube esta factura» con archivo):
 
 1. `subir_pdf_factura_recibida` con `filename` + `contentBase64` (contenido del PDF en Base64). Si la factura ya existe, pasa `invoiceId` para adjuntarlo.
 2. Si aún no hay factura: con el `fileId` devuelto, o bien:
-   - `ejecutar_operacion` `POST /api/invoice-extraction/analyze-file` (query `fileId`) y luego `POST /api/received-invoices` con los datos + `fileId`, o
-   - `POST /api/received-invoices/import-from-files` con `{ "fileIds": [<fileId>] }` si solo hay que dejarla pendiente.
-3. No digas que «no se puede subir el PDF»: usa la tool. Máximo 10 MB.
+   - `ejecutar_operacion` id=`POST /api/invoice-extraction/analyze-file` (query `fileId`) y luego `ejecutar_operacion` id=`POST /api/received-invoices` con los datos + `fileId`, o
+   - `ejecutar_operacion` id=`POST /api/received-invoices/import-from-files` con body `{ "fileIds": [<fileId>] }` si solo hay que dejarla pendiente.
+3. No digas que «no se puede subir el PDF»: usa la tool. Máximo 10 MB. Requiere permiso de escritura de facturas recibidas.
 
 ## Errores
 
