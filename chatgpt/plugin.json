@@ -19,6 +19,9 @@
         "category": "Productivity",
         "capabilities": ["Read", "Write"],
         "websiteURL": "https://facturatum.es",
+        "privacyPolicyURL": "https://facturatum.es/politica-privacidad",
+        "termsOfServiceURL": "https://facturatum.es/terminos-servicio",
+        "supportURL": "https://app.facturatum.es/conectores",
         "defaultPrompt": [
           "Lista las últimas facturas recibidas de mi empresa en Facturatum.",
           "Resume el estado de cobros pendientes en Facturatum."
