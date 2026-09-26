@@ -26,15 +26,14 @@ Ayudar al usuario a consultar y operar **su** empresa de Facturatum ya autorizad
 
 Cuando el usuario aporte un PDF (o diga «sube esta factura» con archivo):
 
-1. Calcula el tamaño del Base64. Si es **&lt; ~180 KB**, usa `subir_pdf_factura_recibida` con `filename` + `contentBase64` (y `invoiceId` si la factura ya existe).
-2. Si el Base64 es **mayor** (límite típico del cliente ~700 KB): **no** intentes un solo argumento enorme.
-   - `iniciar_subida_pdf_factura_recibida` con `filename`, `totalParts`, y `invoiceId` si aplica (`totalBytes` opcional).
-   - Luego `subir_parte_pdf_factura_recibida` por cada parte en orden (`partNumber` 1-based, `contentBase64`). Cada trozo **raw ≤ 150 KB** (~200 KB Base64).
-   - La última parte responde con `fileId` / `attached` como el upload monolítico.
-3. Si aún no hay factura: con el `fileId` devuelto, o bien:
-   - `ejecutar_operacion` id=`POST /api/invoice-extraction/analyze-file` (query `fileId`) y luego `ejecutar_operacion` id=`POST /api/received-invoices` con los datos + `fileId`, o
-   - `ejecutar_operacion` id=`POST /api/received-invoices/import-from-files` con body `{ "fileIds": [<fileId>] }` si solo hay que dejarla pendiente.
-4. No digas que «no se puede subir el PDF»: usa la tool adecuada. Máximo 10 MB del PDF. Requiere permiso de escritura de facturas recibidas.
+1. Si el Base64 es **&lt; ~180 KB**: `subir_pdf_factura_recibida` con `filename` + `contentBase64` (y `invoiceId` si aplica).
+2. Si es **mayor** (preferido): **no** metas el PDF en un tool call Base64.
+   - `iniciar_subida_url_pdf_factura_recibida` con `filename` y `invoiceId` si aplica.
+   - Con el `uploadUrl` devuelto, haz **POST HTTP** del fichero binario (multipart campo `file`, o body `application/pdf`). Sin JWT: el token va en la URL.
+   - La respuesta del POST trae `fileId` / `attached`.
+3. Fallback si no puedes POST HTTP: `iniciar_subida_pdf_factura_recibida` + `subir_parte_pdf_factura_recibida` (trozos raw ≤ 150 KB).
+4. Si aún no hay factura: con el `fileId`, `ejecutar_operacion` analyze-file / create / import-from-files.
+5. No digas que «no se puede subir el PDF». Máximo 10 MB. Requiere escritura de facturas recibidas.
 
 ## Errores
 
